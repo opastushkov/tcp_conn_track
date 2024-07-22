@@ -36,7 +36,7 @@ gboolean failed_connections_equal(gconstpointer a, gconstpointer b)
 
 void init_context(Context* ctx)
 {
-	ctx->potential_connections	= g_hash_table_new_full(potential_connections_hash,
+    ctx->potential_connections	= g_hash_table_new_full(potential_connections_hash,
                                                         potential_connections_equal,
                                                         g_free,
                                                         g_free);
@@ -44,15 +44,15 @@ void init_context(Context* ctx)
                                                         failed_connections_equal,
                                                         g_free,
                                                         g_free);
-	ctx->records				= g_async_queue_new();
+    ctx->records                = g_async_queue_new();
     ctx->file                   = 0;
 }
 
 void clean_context(Context* ctx)
 {
-	g_hash_table_destroy(ctx->potential_connections);
-	gpointer element;
+    g_hash_table_destroy(ctx->potential_connections);
+    gpointer element;
     while((element = g_async_queue_try_pop(ctx->records))) { g_free(element); }
-	g_async_queue_unref(ctx->records);
+    g_async_queue_unref(ctx->records);
     if(ctx->file) { fclose(ctx->file); }
 }
