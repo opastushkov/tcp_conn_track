@@ -6,7 +6,7 @@ void report_failed_connection(Context* ctx, PacketInfo* packet)
     GAsyncQueue*    records             = ctx->records;
     GHashTable*     failed_connections  = ctx->failed_connections;
     int*            count               = (int*) g_hash_table_lookup(failed_connections, packet);
-    char*           record              = NULL; 
+    char*           record              = NULL;
     if(count)
     {
         ++(*count);
